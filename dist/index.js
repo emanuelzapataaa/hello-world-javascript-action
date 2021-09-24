@@ -8338,10 +8338,18 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(6024);
 const github = __nccwpck_require__(5016);
+const fs = __nccwpck_require__(5747);
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
+  const file = core.getInput('file');
+    try{
+        const data = fs.readFileSync(file,'utf8')
+        console.log(data);
+    }
+    catch(err){
+        console.error(err);
+    }
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
